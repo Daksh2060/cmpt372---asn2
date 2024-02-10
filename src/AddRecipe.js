@@ -12,16 +12,16 @@ const AddRecipe = () => {
     const handleSubmit = (e)=> {
         e.preventDefault();
 
-        const stock = { name, ingredients, steps};
+        const recipe = { name, ingredients, steps};
 
         setIsPending(true);
 
-        fetch('http://localhost:3000/stocks', {
+        fetch('http://localhost:3000/recipes', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(stock)
+            body: JSON.stringify(recipe)
         }).then(()=> {
-            console.log("New stock added");
+            console.log("New recipe added");
             setIsPending(false);
             navigate('/');
         })

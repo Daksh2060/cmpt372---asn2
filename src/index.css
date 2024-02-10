@@ -30,21 +30,21 @@
     padding: 10px;
   }
   
-  .stock-preview{
+  .recipe-preview{
     padding: 10px 16px;
     margin: 20px 0;
     border-bottom:1px lightgray ;
   }
   
-  .stock-preview a{
+  .recipe-preview a{
     text-decoration: none;
   }
   
-  .stock-preview:hover{
+  .recipe-preview:hover{
     box-shadow: 1px 3px 5px black;
   }
   
-  .stock-preview h2{
+  .recipe-preview h2{
     font-size: 20px;
     color: red;
   }

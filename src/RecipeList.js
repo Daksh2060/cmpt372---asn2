@@ -10,7 +10,7 @@ const RecipeList = (props) => {
             {recipes.map((recipe) => (
                 <div className="recipe-preview" key = {recipe.id}>
                     <Link to = {`/recipes/${recipe.id}`}>
-                        <h2>{recipe.ticker}</h2>
+                        <h2>{recipe.name}</h2>
                     </Link>
                 </div> 
             ))}
