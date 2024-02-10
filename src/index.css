@@ -1,0 +1,119 @@
+
+.content{
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 10px;
+}
+
+/*navbar*/
+.navbar{
+    background-color: red;
+}
+
+.navbar h1{
+    font-size: 50px;
+}
+
+.navbar .links{
+    font-size: 10px;
+}
+
+.navbar a{
+    margin-left: 16px;
+    padding: 5px;
+}
+
+.navbar a:hover{
+    color: brown;
+}
+
+/*homepage*/
+.title {
+    color: blue; 
+    font-size: 35px;
+}
+
+.recipe-preview{
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom:1px lightgray ;
+}
+
+.recipe-preview a{
+    text-decoration: none;
+}
+
+.recipe-preview:hover{
+    box-shadow: 1px 3px 5px black;
+}
+  
+.recipe-preview h2{
+    font-size: 20px;
+    color: red;
+}
+
+
+
+/*view in details*/
+.recipe-name{
+    color: green;
+}
+
+.recipe-ingredients{
+    color: purple;
+    font-size: 30px;
+}
+
+.recipe-steps{
+    color: gray;
+    font-size: 50px;
+}
+
+.recipe-delete{
+    color: blue;
+    background-color: brown;
+}
+
+.recipe-edit{
+    color: black;
+    background-color: yellow;
+}
+
+
+/*add form*/
+.create h2{
+    font-size: 10px;
+}
+
+.recipe-form{
+    background-color: teal;
+}
+
+.recipe-name-label {
+    font-size: 24px;
+    display: block;
+}
+
+.recipe-name-input{
+    width: 500px;
+}
+
+.recipe-ingredients-label {
+    font-size: 24px;
+    display: block;
+}
+
+.recipe-ingredients-input{
+    width: 500px;
+}
+
+.recipe-steps-label {
+    font-size: 24px;
+    display: block;
+}
+
+.recipe-steps-input{
+    width: 500px;
+}
+
+
