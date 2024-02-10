@@ -1,48 +1,41 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const Form = ({ addRecipe }) => {
-  const [recipeName, setRecipeName] = useState('');
-  const [ingredients, setIngredients] = useState('');
-  const [steps, setSteps] = useState('');
-  const navigate = useNavigate();
+const AddStock = () => {
 
-  const handleSubmit = (e) => {
+    const [ticker, setTicker] = useState('');
+    const [isPending, setIsPending] = useState(false);
+    const navigate = useNavigate();
 
-    const recipe = {
-      recipeName: recipeName,
-      ingredients: ingredients,
-      steps: steps
-    };
+    const handleSubmit = (e)=> {
+        e.preventDefault();
+        let price = "0";
+        const stock = { ticker, price};
 
-    addRecipe(recipe);
-    setRecipeName('');
-    setIngredients('');
-    setSteps('');
-    navigate('/');
-  };
+        setIsPending(true);
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Recipe Name"
-        value={recipeName}
-        onChange={(e) => setRecipeName(e.target.value)}
-      />
-      <textarea
-        placeholder="Ingredients (comma-separated)"
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
-      />
-      <textarea
-        placeholder="Steps (one step per line)"
-        value={steps}
-        onChange={(e) => setSteps(e.target.value)}
-      />
-      <button type="submit">Add</button>
-    </form>
-  );
-};
+        fetch('http://localhost:3000/stocks', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(stock)
+        }).then(()=> {
+            console.log("New stock added");
+            setIsPending(false);
+            navigate('/');
+        })
+    }
 
-export default Form;
+    return ( 
+        <div className="create">
+            <h2>Add a New Stock</h2>
+            <form onSubmit={ handleSubmit }>
+                <label>Stock Ticker</label>
+                <input type = "text" required value = { ticker } onChange={(e) => setTicker(e.target.value)}/>
+                { !isPending && <button>Save</button> }
+                { isPending && <button disabled>Saving Stock...</button> }
+            </form>
+        </div>
+    );
+}
+ 
+export default AddStock;

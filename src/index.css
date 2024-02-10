@@ -1,0 +1,50 @@
+.navbar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+    border-bottom: 1px solid lightblue;
+  }
+  
+  .navbar h1{
+    color: red;
+  }
+  
+  .navbar .links{
+    margin-left: auto;
+  }
+  
+  .navbar a{
+    margin-left: 16px;
+    padding: 5px;
+  }
+  
+  .navbar a:hover{
+    color: brown;
+  }
+  
+  .content{
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 10px;
+  }
+  
+  .stock-preview{
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom:1px lightgray ;
+  }
+  
+  .stock-preview a{
+    text-decoration: none;
+  }
+  
+  .stock-preview:hover{
+    box-shadow: 1px 3px 5px black;
+  }
+  
+  .stock-preview h2{
+    font-size: 20px;
+    color: red;
+  }

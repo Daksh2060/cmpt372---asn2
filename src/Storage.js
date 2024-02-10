@@ -1,7 +1,13 @@
-// Storage.js
-import React from 'react';
+import { useState } from 'react';
 
-const Storage = ({ recipes }) => {
+const RecipeStorage = ( {recipe} ) => {
+
+  const [recipes, setRecipes] = useState([]);
+
+  const addRecipe = (recipe) => {
+    setRecipes([...recipes, recipe]);
+  };
+
   return (
     <div>
       <h2>Recipe Storage</h2>
@@ -14,4 +20,4 @@ const Storage = ({ recipes }) => {
   );
 };
 
-export default Storage;
+export default RecipeStorage;
