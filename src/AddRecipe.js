@@ -9,6 +9,10 @@ const AddRecipe = () => {
     const [isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
 
+    const handleHome = () => {
+        navigate('/');
+      }
+
     const handleSubmit = (e)=> {
         e.preventDefault();
 
@@ -44,6 +48,7 @@ const AddRecipe = () => {
                 { !isPending && <button className="recipe-delete">Save</button> }
                 { isPending && <button className="recipe-save" disabled>Saving Recipe...</button> }
             </form>
+            <button className="return-home" onClick={handleHome}>Return Home</button>
         </div>
     );
 }

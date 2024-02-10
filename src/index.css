@@ -1,34 +1,18 @@
-
 .content{
     max-width: 600px;
     margin: 40px auto;
     padding: 10px;
 }
 
-/*navbar*/
-.navbar{
-    background-color: red;
-}
 
-.navbar h1{
-    font-size: 50px;
-}
 
-.navbar .links{
-    font-size: 10px;
-}
-
-.navbar a{
-    margin-left: 16px;
-    padding: 5px;
-}
-
-.navbar a:hover{
-    color: brown;
-}
 
 /*homepage*/
-.title {
+.home-title{
+    font-size: 100px;
+}
+
+.saved-title {
     color: blue; 
     font-size: 35px;
 }
@@ -78,6 +62,7 @@
     color: black;
     background-color: yellow;
 }
+
 
 
 /*add form*/

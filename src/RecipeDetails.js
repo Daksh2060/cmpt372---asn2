@@ -34,6 +34,10 @@ const Details = () => {
     setIsEditing(true);
   };
 
+  const handleHome = () => {
+    navigate('/');
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedRecipe = { name, ingredients, steps };
@@ -70,6 +74,7 @@ const Details = () => {
           { !isPending && <button>Save</button> }
           { isPending && <button disabled>Saving Recipe...</button> }
         </form>
+        <button className="return-home" onClick={handleHome}>Return Home</button>
       </div>
       ) : (
         <div>
@@ -78,6 +83,7 @@ const Details = () => {
           <p className="recipe-steps">Steps: {recipe.steps}</p>
           <button className="recipe-edit" onClick={handleEdit}>Edit</button>
           <button className="recipe-delete" onClick={handleDelete}>Delete</button>
+          <button className="return-home" onClick={handleHome}>Return Home</button>
         </div>
       )}
     </div>
