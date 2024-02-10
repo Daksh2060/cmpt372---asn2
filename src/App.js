@@ -1,22 +1,30 @@
-import Navbar from './Navbar';
-import Home from 'Home.js';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NotFound from './NotFound';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Storage from './Storage';
+import Form from './Add';
 
 function App() {
+  const [recipes, setRecipes] = useState([]);
+
+  const addRecipe = (recipe) => {
+    setRecipes([...recipes, recipe]);
+  };
+
   return (
     <Router>
       <div className="App">
-        < Navbar />
         <div className="content">
           <Routes>
-            <Route exact path="/" element={<Home />}></Route>
-            <Route path="*" element={<NotFound />}></Route>
+            <Route exact path="/" element={<Storage recipes={recipes} />} />
+            <Route
+              exact
+              path="/Add"
+              element={<Form addRecipe={addRecipe} />}
+            />
           </Routes>
         </div>
       </div>
     </Router>
-    
   );
 }
 
