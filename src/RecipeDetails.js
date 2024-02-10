@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import useFetch from "./useFetch";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
 
 const Details = () => {
   const { id } = useParams();
