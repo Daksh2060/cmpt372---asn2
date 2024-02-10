@@ -1,4 +1,4 @@
-import StockList from "./StockList";
+import RecipeList from "./RecipeList";
 import useFetch from "./useFetch";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
             <h2>Home</h2>
             { error && <div>{error}</div>}
             { isLoading && <div>Loading...</div> }
-            { stocks && <StockList stocks = {stocks} title = "Expesnive Sotcks"/> }
+            { stocks && <RecipeList stocks = {stocks} title = "Expesnive Sotcks"/> }
         </div>
     );
 }
