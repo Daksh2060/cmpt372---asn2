@@ -11,7 +11,7 @@ const AddRecipe = () => {
 
     const handleHome = () => {
         navigate('/');
-      }
+    }
 
     const handleSubmit = (e)=> {
         e.preventDefault();
