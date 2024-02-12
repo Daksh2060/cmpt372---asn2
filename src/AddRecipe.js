@@ -39,16 +39,16 @@ const AddRecipe = () => {
                 <label className="recipe-name-label">Recipe Name:</label>
                 <input className="recipe-name-input" type = "text" required value = { name } onChange={(e) => setName(e.target.value)}/>
 
-                <label className="recipe-ingredients-label">Recipe Ingredients</label>
+                <label className="recipe-ingredients-label">Recipe Ingredients:</label>
                 <textarea className="recipe-ingredients-input" type = "text" required value = { ingredients } onChange={(e) => setIngredients(e.target.value)}/>
 
-                <label className="recipe-steps-label">Recipe Steps</label>
+                <label className="recipe-steps-label">Recipe Steps:</label>
                 <textarea className="recipe-steps-input" type = "text" required value = { steps } onChange={(e) => setSteps(e.target.value)}/>
 
-                { !isPending && <button className="recipe-delete">Save</button> }
-                { isPending && <button className="recipe-save" disabled>Saving Recipe...</button> }
+                { !isPending && <button>SAVE</button> }
+                { isPending && <button disabled>Saving Recipe...</button> }
             </form>
-            <button className="return-home" onClick={handleHome}>Return Home</button>
+            <button className="return-home" onClick={handleHome}>RETURN HOME</button>
         </div>
     );
 }

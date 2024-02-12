@@ -16,7 +16,7 @@
     text-align: center;
     text-shadow: 2px 2px 4px;
     padding-top: 50px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     background-image: linear-gradient(rgb(132, 206, 248),  rgb(224, 230, 231));
 }
 
@@ -102,38 +102,105 @@
 
 /*add form*/
 .create h2{
-    font-size: 10px;
+    color: #264ebb; 
+    font-size: 35px;
+    text-align: left;
 }
 
 .recipe-form{
-    background-color: teal;
+    background-color: rgb(183, 192, 192);
+    padding: 50px;
+    padding-top: 10px;
 }
 
-.recipe-name-label {
+.recipe-form label{
+    background-color: rgb(183, 192, 192);
+    margin-top: 20px;
+    font-weight: bold;
     font-size: 24px;
-    display: block;
+    display: block; 
 }
 
 .recipe-name-input{
     width: 500px;
-}
-
-.recipe-ingredients-label {
-    font-size: 24px;
-    display: block;
+    height: 30px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .recipe-ingredients-input{
     width: 500px;
-}
-
-.recipe-steps-label {
-    font-size: 24px;
-    display: block;
+    height: 170px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .recipe-steps-input{
     width: 500px;
+    display: block;
+    height: 170px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
+.recipe-form button{
+    display: block;
+    margin: auto;  
+    margin-top: 20px;  
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
 
+.recipe-form button:hover{
+    background-color: #4ea55c;
+    border-color: #afdae7;
+    color: white;
+}
+
+.return-home{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #254bb4;
+    border: 2px solid #a9b9aa;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.return-home:hover {
+    background-color: #3b58a8;
+    border-color: #13728f;
+    color: black;
+}
+  
+.return-home:active {
+    background-color: #443984;
+    border-color: #727aa0;
+    color: black;
+}
