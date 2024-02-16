@@ -77,14 +77,19 @@ const Details = () => {
         <button className="return-home" onClick={handleHome}>Return Home</button>
       </div>
       ) : (
-        <div>
-          <h2 className="recipe-name">{recipe.name}</h2>
-          <p className="recipe-ingredients">Ingredients: {recipe.ingredients}</p>
-          <p className="recipe-steps">Steps: {recipe.steps}</p>
-          <button className="recipe-edit" onClick={handleEdit}>Edit</button>
-          <button className="recipe-delete" onClick={handleDelete}>Delete</button>
+        <div className="view-recipe-container">
+          <div className="view-recipe">
+            <h1>{recipe.name}</h1>
+            <h2>Ingredients:</h2>
+            <p>{recipe.ingredients}</p>
+            <h2>Steps:</h2>
+            <p>{recipe.steps}</p>
+            <button className="recipe-edit" onClick={handleEdit}>Edit</button>
+            <button className="recipe-delete" onClick={handleDelete}>Delete</button>
+          </div>
           <button className="return-home" onClick={handleHome}>Return Home</button>
-        </div>
+      </div>
+      
       )}
     </div>
   );
