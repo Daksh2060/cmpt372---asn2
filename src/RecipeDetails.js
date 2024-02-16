@@ -59,22 +59,23 @@ const Details = () => {
   return (
     <div className="details">
       {isEditing ? (
-      <div className="create">
-        <h2>Add a New Recipe</h2>
-        <form className="recipe-form" onSubmit={handleSubmit}>
-          <label className="recipe-name-label">Recipe Name:</label>
-          <input className="recipe-name-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      <div className="recipe-container">
+        <h2>Edit Recipe</h2>
+          <form className="recipe-form" onSubmit={handleSubmit}>
+            <label className="recipe-name-label">Recipe Name:</label>
+            <input className="recipe-name-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
-          <label className="recipe-ingredients-label">Recipe Ingredients</label>
-          <textarea className="recipe-ingredients-input" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+            <label className="recipe-ingredients-label">Recipe Ingredients</label>
+            <textarea className="recipe-ingredients-input" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
 
-          <label className="recipe-steps-label">Recipe Steps</label>
-          <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />
+            <label className="recipe-steps-label">Recipe Steps</label>
+            <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />
 
-          { !isPending && <button>Save</button> }
-          { isPending && <button disabled>Saving Recipe...</button> }
-        </form>
-        <button className="return-home" onClick={handleHome}>Return Home</button>
+            { !isPending && <button>Save</button> }
+            { isPending && <button disabled>Saving Recipe...</button> }
+          </form>
+          <button className="return-home" onClick={handleHome}>Return Home</button>
+    
       </div>
       ) : (
         <div className="view-recipe-container">
@@ -84,8 +85,10 @@ const Details = () => {
             <p>{recipe.ingredients}</p>
             <h2>Steps:</h2>
             <p>{recipe.steps}</p>
-            <button className="recipe-edit" onClick={handleEdit}>Edit</button>
-            <button className="recipe-delete" onClick={handleDelete}>Delete</button>
+            <div className="button-container">
+              <button className="recipe-edit" onClick={handleEdit}>Edit</button>
+              <button className="recipe-delete" onClick={handleDelete}>Delete</button>
+            </div>
           </div>
           <button className="return-home" onClick={handleHome}>Return Home</button>
       </div>

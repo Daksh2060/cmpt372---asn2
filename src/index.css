@@ -23,7 +23,7 @@
 .saved-title {
     color: #264ebb; 
     font-size: 35px;
-    text-align: left;
+    text-align: center;
 }
 
 .new{
@@ -110,31 +110,65 @@
     font-weight: 500; 
 }
 
-.recipe-delete{
-    color: blue;
-    background-color: brown;
+.button-container{
+    text-align: center;
 }
 
-.recipe-edit{
-    color: black;
-    background-color: yellow;
+.recipe-edit,
+.recipe-delete {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+  transition: background-color 0.3s ease;
+  
+}
+
+.recipe-edit:hover,
+.recipe-delete:hover {
+  background-color: #45a049; /* Darker Green */
+}
+
+/* Delete Button */
+.recipe-delete {
+  background-color: #f44336; /* Red */
+}
+
+.recipe-delete:hover {
+  background-color: #d32f2f; /* Darker Red */
 }
 
 /*add form*/
-.create h2{
-    color: #264ebb; 
-    font-size: 35px;
-    text-align: left;
+.recipe-container {
+    background-color: #f0f0f0; /* Light gray */
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+    width: 600px;
+    align-items: center;
+    border: 2px solid #acb4ac;
+
 }
 
+.recipe-container h2{
+    background-color: #f0f0f0;
+    color: #264ebb; 
+    font-size: 35px;
+    text-align: center;
+}
+  
+
 .recipe-form{
-    background-color: rgb(183, 192, 192);
     padding: 50px;
     padding-top: 10px;
 }
 
 .recipe-form label{
-    background-color: rgb(183, 192, 192);
     margin-top: 20px;
     font-weight: bold;
     font-size: 24px;
@@ -151,6 +185,7 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: white;
 }
 
 .recipe-ingredients-input{
@@ -163,6 +198,7 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: white;
 }
 
 .recipe-steps-input{
@@ -176,6 +212,7 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: white;
 }
 
 .recipe-form button{
