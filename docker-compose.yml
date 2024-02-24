@@ -3,8 +3,8 @@ version: '3.9'
 services:
   server:
     build: .
-    posts:
-      - "8081:8080"
+    ports:
+      - "8080:8080"
   db:
     image: 'postgres'
     ports:
@@ -12,3 +12,4 @@ services:
     environment:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'root'
+  
