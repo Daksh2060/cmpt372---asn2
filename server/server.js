@@ -5,9 +5,9 @@ const app = express();
 const port = 8080;
 
 const pool = new Pool({
-    user: 'test',
+    user: 'postgres',
     host: 'db',
-    password: 'root'
+    password: 'DDsspp20'
 });
 
 app.use(express.json());
@@ -21,12 +21,12 @@ app.get('/', async (req, res) => {
 app.post('/users', async (req, res) => {
     const { name, age } = req.body;
     const response = await pool.query('INSERT INTO users (name, age) VALUES ($1, $2)', [name, age]);
-    res.send(response);
+    res.send("sent");
 });
 
 app.get('/users', async (req, res) => {
-    //const response = await pool.query('SELECT * FROM users')
-    res.send("working");
+    const response = await pool.query('SELECT * FROM users')
+    res.send(response.rows);
 });
 
 app.listen(port, '0.0.0.0', () => {
