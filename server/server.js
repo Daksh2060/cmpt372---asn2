@@ -7,25 +7,25 @@ const port = 8080;
 const pool = new Pool({
     user: 'postgres',
     host: 'db',
-    password: 'DDsspp20'
+    password: 'root'
 });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
-    await pool.query('CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(255), age INT)');
+    await pool.query('CREATE TABLE IF NOT EXISTS recipes (id SERIAL PRIMARY KEY, name VARCHAR(255), ingredients VARCHAR(500), steps VARCHAR(500))');
     res.send('Success');
 });
 
-app.post('/users', async (req, res) => {
-    const { name, age } = req.body;
-    const response = await pool.query('INSERT INTO users (name, age) VALUES ($1, $2)', [name, age]);
+app.post('/recipes', async (req, res) => {
+    const { name, ingredients, steps } = req.body;
+    const response = await pool.query('INSERT INTO recipes (name, ingredientsm steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
     res.send("sent");
 });
 
-app.get('/users', async (req, res) => {
-    const response = await pool.query('SELECT * FROM users')
+app.get('/recipes', async (req, res) => {
+    const response = await pool.query('SELECT * FROM recipes')
     res.send(response.rows);
 });
 
