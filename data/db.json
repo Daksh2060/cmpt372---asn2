@@ -1,34 +1,3 @@
 {
-  "recipes": [
-    {
-      "name": "Daksh",
-      "ingredients": "Shash",
-      "steps": "sas\nasas\nasasas\n54\n12212",
-      "id": "c52c"
-    },
-    {
-      "id": "6f0e",
-      "name": "asas",
-      "ingredients": "as",
-      "steps": "as"
-    },
-    {
-      "id": "0468",
-      "name": "as",
-      "ingredients": "asas",
-      "steps": "as"
-    },
-    {
-      "id": "4739",
-      "name": "1212",
-      "ingredients": "\\",
-      "steps": "as"
-    },
-    {
-      "id": "b401",
-      "name": "1212",
-      "ingredients": "asas",
-      "steps": "1212"
-    }
-  ]
+  "recipes": []
 }
