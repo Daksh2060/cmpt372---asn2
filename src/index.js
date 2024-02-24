@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App.js';
+
 const express = require('express')
 const app = express()
 
@@ -11,7 +16,7 @@ pool = new Pool({
     password: 'root'
 })
 
-const port = 8080
+const port = 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
@@ -25,7 +30,7 @@ app.post('/users', async ( req, res ) => {
 
     const {name, age} = req.body
     const response  = await pool.query('INSERT INTO users (name, age) VALUES ($1, $2)', [name, age])
-    res.send("successs")
+    res.send(response)
 })
 
 app.get('/users', async (req, res) => {
@@ -35,11 +40,6 @@ app.get('/users', async (req, res) => {
 
 app.listen(port, '0.0.0.0')
 console.log(`Running on http://0.0.0.0:${port}`)
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

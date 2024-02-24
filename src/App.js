@@ -1,9 +1,9 @@
 
-import Home from './Home';
+import Home from './Home.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AddRecipe from './AddRecipe';
-import Details from './RecipeDetails';
-import NotFound from './NotFound';
+import AddRecipe from './AddRecipe.js';
+import Details from './RecipeDetails.js';
+import NotFound from './NotFound.js';
 
 function App() {
   return (

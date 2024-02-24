@@ -1,6 +1,5 @@
-import RecipeList from "./RecipeList";
-import useFetch from "./useFetch";
-import { Link } from "react-router-dom";
+import RecipeList from "./RecipeList.js";
+import useFetch from "./useFetch.js";
 import { useNavigate } from "react-router";
 
 const Home = () => {
