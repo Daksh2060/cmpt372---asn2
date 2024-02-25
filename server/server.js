@@ -31,6 +31,34 @@ app.get('/recipes', async (req, res) => {
     res.send(response.rows);
 });
 
+app.get('/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await pool.query('SELECT * FROM recipes WHERE id = $1', [id]);
+        if (response.rows.length === 0) {
+            res.status(404).send('Recipe not found');
+        } else {
+            res.json(response.rows[0]);
+        }
+    } catch (error) {
+        console.error('Error fetching recipe:', error);
+        res.status(500).send('Error fetching recipe');
+    }
+});
+
+app.delete('/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    await pool.query('DELETE FROM recipes WHERE id = $1', [id]);
+    res.send("Recipe deleted");
+});
+
+app.put('/recipes/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, ingredients, steps } = req.body;
+    await pool.query('UPDATE recipes SET name = $1, ingredients = $2, steps = $3 WHERE id = $4', [name, ingredients, steps, id]);
+    res.send("Recipe updated");
+});
+
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${port}`);
 });
