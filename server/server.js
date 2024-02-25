@@ -1,7 +1,9 @@
 const express = require('express');
 const { Pool } = require('pg');
-
+const cors = require('cors');
 const app = express();
+app.use(cors());
+
 const port = 8080;
 
 const pool = new Pool({
@@ -20,7 +22,7 @@ app.get('/', async (req, res) => {
 
 app.post('/recipes', async (req, res) => {
     const { name, ingredients, steps } = req.body;
-    const response = await pool.query('INSERT INTO recipes (name, ingredientsm steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
+    const response = await pool.query('INSERT INTO recipes (name, ingredients, steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
     res.send("sent");
 });
 
