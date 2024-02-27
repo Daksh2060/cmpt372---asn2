@@ -2,6 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
 const app = express();
+const waitOn = require('wait-on');
 app.use(cors());
 
 const port = 8080;
@@ -15,14 +16,19 @@ const pool = new Pool({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', async (req, res) => {
-    await pool.query('CREATE TABLE IF NOT EXISTS recipes (id SERIAL PRIMARY KEY, name VARCHAR(255), ingredients VARCHAR(500), steps VARCHAR(500))');
-    res.send('Success');
-});
+async function initializeDatabase() {
+    try {
+        await pool.query('CREATE TABLE IF NOT EXISTS recipes (id SERIAL PRIMARY KEY, name VARCHAR(255), ingredients VARCHAR(500), steps VARCHAR(500))');
+        console.log('Database initialized');
+    } catch (error) {
+        console.error('Error initializing database:', error);
+    }
+}
+
 
 app.post('/recipes', async (req, res) => {
     const { name, ingredients, steps } = req.body;
-    const response = await pool.query('INSERT INTO recipes (name, ingredients, steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
+    await pool.query('INSERT INTO recipes (name, ingredients, steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
     res.send("sent");
 });
 
@@ -59,6 +65,15 @@ app.put('/recipes/:id', async (req, res) => {
     res.send("Recipe updated");
 });
 
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running on http://0.0.0.0:${port}`);
+// Wait for the database to become available
+waitOn({ resources: ['tcp:db:5432'] }).then(() => {
+    // Initialize the database
+    initializeDatabase().then(() => {
+        // Start the server
+        app.listen(port, '0.0.0.0', () => {
+            console.log(`Server running on http://0.0.0.0:${port}`);
+        });
+    });
+}).catch(error => {
+    console.error('Error waiting for database:', error);
 });
