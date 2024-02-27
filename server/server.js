@@ -25,7 +25,6 @@ async function initializeDatabase() {
     }
 }
 
-
 app.post('/recipes', async (req, res) => {
     const { name, ingredients, steps } = req.body;
     await pool.query('INSERT INTO recipes (name, ingredients, steps) VALUES ($1, $2, $3)', [name, ingredients, steps]);
