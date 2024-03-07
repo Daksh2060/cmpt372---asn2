@@ -23,7 +23,8 @@ async function initializeDatabase() {
             CREATE TABLE IF NOT EXISTS recipes (
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(255),
-                steps VARCHAR(500)
+                steps VARCHAR(500),
+                last_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
 
@@ -63,9 +64,9 @@ app.post('/recipes', async (req, res) => {
 
 app.get('/recipes', async (req, res) => {
     try {
-        // Retrieve all recipes with their ingredients
+        // Retrieve all recipes with their ingredients and last modified timestamp
         const response = await pool.query(`
-            SELECT r.id, r.name, r.steps, array_agg(i.name) AS ingredients
+            SELECT r.id, r.name, r.steps, array_agg(i.name) AS ingredients, r.last_modified AS last_modified
             FROM recipes r
             LEFT JOIN ingredients i ON r.id = i.recipe_id
             GROUP BY r.id
@@ -79,11 +80,12 @@ app.get('/recipes', async (req, res) => {
 });
 
 
+
 app.get('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const response = await pool.query(`
-            SELECT r.*, array_agg(i.name) AS ingredients
+            SELECT r.*, array_agg(i.name) AS ingredients, r.last_modified AS last_modified
             FROM recipes r
             LEFT JOIN ingredients i ON r.id = i.recipe_id
             WHERE r.id = $1
@@ -122,8 +124,8 @@ app.put('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     const { name, steps, ingredients } = req.body;
     try {
-        // Update recipe in recipes table
-        await pool.query('UPDATE recipes SET name = $1, steps = $2 WHERE id = $3', [name, steps, id]);
+        // Update recipe in recipes table including last_modified timestamp
+        await pool.query('UPDATE recipes SET name = $1, steps = $2, last_modified = CURRENT_TIMESTAMP WHERE id = $3', [name, steps, id]);
 
         // Delete existing ingredients for this recipe
         await pool.query('DELETE FROM ingredients WHERE recipe_id = $1', [id]);

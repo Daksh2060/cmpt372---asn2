@@ -9,8 +9,14 @@ const Details = () => {
     const [name, setName] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState('');
+    const [lastModified, setLastModified] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [isPending, setIsPending] = useState(false);
+
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    };
 
     useEffect(() => {
         fetch(`http://localhost:8080/recipes/${id}`)
@@ -25,6 +31,7 @@ const Details = () => {
                 setName(data.name);
                 setIngredients(data.ingredients);
                 setSteps(data.steps);
+                setLastModified(data.last_modified); // Set the last modified timestamp
             })
             .catch(error => console.error('Error fetching recipe:', error));
     }, [id]);
@@ -67,6 +74,8 @@ const Details = () => {
                     ingredients,
                     steps
                 }));
+                // Update the last modified time
+                setLastModified(new Date().toISOString());
             })
             .catch(error => console.error('Error updating recipe:', error));
     };
@@ -111,6 +120,7 @@ const Details = () => {
                         </ul>
                         <h2>Steps:</h2>
                         <p>{recipe.steps}</p>
+                        <p>Last Modified: {lastModified && formatDate(lastModified)}</p>
                         <div className="button-container">
                             <button className="recipe-edit" onClick={handleEdit}>Edit</button>
                             <button className="recipe-delete" onClick={handleDelete}>Delete</button>
@@ -124,5 +134,3 @@ const Details = () => {
 };
 
 export default Details;
-
-
