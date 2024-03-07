@@ -83,7 +83,12 @@ const Details = () => {
                         <input className="recipe-name-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
                         <label className="recipe-ingredients-label">Recipe Ingredients</label>
-                        <textarea className="recipe-ingredients-input" value={ingredients.join(', ')} onChange={(e) => setIngredients(e.target.value)} />
+                        <textarea 
+                            className="recipe-ingredients-input" 
+                            value={ingredients.join(', ')} 
+                            onChange={(e) => setIngredients(e.target.value.split(', '))} 
+                        />
+
 
                         <label className="recipe-steps-label">Recipe Steps</label>
                         <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />

@@ -104,11 +104,11 @@ app.get('/recipes/:id', async (req, res) => {
 app.delete('/recipes/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        // Delete recipe from recipes table
-        await pool.query('DELETE FROM recipes WHERE id = $1', [id]);
-
-        // Also delete corresponding ingredients from ingredients table
+        // Delete corresponding ingredients from the ingredients table
         await pool.query('DELETE FROM ingredients WHERE recipe_id = $1', [id]);
+
+        // Now, delete the recipe from the recipes table
+        await pool.query('DELETE FROM recipes WHERE id = $1', [id]);
 
         res.send("Recipe deleted");
     } catch (error) {
@@ -116,6 +116,7 @@ app.delete('/recipes/:id', async (req, res) => {
         res.status(500).send('Error deleting recipe');
     }
 });
+
 
 app.put('/recipes/:id', async (req, res) => {
     const { id } = req.params;
