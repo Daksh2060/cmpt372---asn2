@@ -14,22 +14,25 @@ const AddRecipe = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const recipe = { name, ingredients, steps };
-
+    
+        // Split the ingredients string into an array
+        const ingredientsArray = ingredients.split(',').map(ingredient => ingredient.trim());
+    
+        const recipe = { name, ingredients: ingredientsArray, steps };
+    
         setIsPending(true);
-
+    
         try {
             const response = await fetch('http://localhost:8080/recipes', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(recipe)
             });
-
+    
             if (!response.ok) {
                 throw new Error('Failed to add recipe');
             }
-
+    
             console.log("New recipe added");
             setIsPending(false);
             navigate('/');
@@ -38,7 +41,7 @@ const AddRecipe = () => {
             setIsPending(false);
         }
     }
-
+    
     return (
         <div className="recipe-container">
             <h2>Add New Recipe</h2>

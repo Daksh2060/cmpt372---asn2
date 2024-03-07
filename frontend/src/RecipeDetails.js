@@ -7,7 +7,7 @@ const Details = () => {
     const navigate = useNavigate();
     const [recipe, setRecipe] = useState(null);
     const [name, setName] = useState('');
-    const [ingredients, setIngredients] = useState('');
+    const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [isPending, setIsPending] = useState(false);
@@ -48,28 +48,28 @@ const Details = () => {
     }
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      const updatedRecipe = { name, ingredients, steps };
-      setIsPending(true);
-      fetch(`http://localhost:8080/recipes/${id}`, {
-          method: 'PUT',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedRecipe)
-      })
-          .then(() => {
-              console.log("Recipe updated");
-              setIsPending(false);
-              setIsEditing(false);
-              // Update the recipe state with the new values
-              setRecipe(prevRecipe => ({
-                  ...prevRecipe,
-                  name,
-                  ingredients,
-                  steps
-              }));
-          })
-          .catch(error => console.error('Error updating recipe:', error));
-  };
+        e.preventDefault();
+        const updatedRecipe = { name, ingredients, steps };
+        setIsPending(true);
+        fetch(`http://localhost:8080/recipes/${id}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedRecipe)
+        })
+            .then(() => {
+                console.log("Recipe updated");
+                setIsPending(false);
+                setIsEditing(false);
+                // Update the recipe state with the new values
+                setRecipe(prevRecipe => ({
+                    ...prevRecipe,
+                    name,
+                    ingredients,
+                    steps
+                }));
+            })
+            .catch(error => console.error('Error updating recipe:', error));
+    };
 
     if (!recipe) return <div>Loading...</div>;
 
@@ -83,7 +83,7 @@ const Details = () => {
                         <input className="recipe-name-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
                         <label className="recipe-ingredients-label">Recipe Ingredients</label>
-                        <textarea className="recipe-ingredients-input" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+                        <textarea className="recipe-ingredients-input" value={ingredients.join(', ')} onChange={(e) => setIngredients(e.target.value)} />
 
                         <label className="recipe-steps-label">Recipe Steps</label>
                         <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />
@@ -95,25 +95,29 @@ const Details = () => {
 
                 </div>
             ) : (
-                    <div className="view-recipe-container">
-                        <div className="view-recipe">
-                            <h1>{recipe.name}</h1>
-                            <h2>Ingredients:</h2>
-                            <p>{recipe.ingredients}</p>
-                            <h2>Steps:</h2>
-                            <p>{recipe.steps}</p>
-                            <div className="button-container">
-                                <button className="recipe-edit" onClick={handleEdit}>Edit</button>
-                                <button className="recipe-delete" onClick={handleDelete}>Delete</button>
-                            </div>
+                <div className="view-recipe-container">
+                    <div className="view-recipe">
+                        <h1>{recipe.name}</h1>
+                        <h2>Ingredients:</h2>
+                        <ul>
+                            {ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                        <h2>Steps:</h2>
+                        <p>{recipe.steps}</p>
+                        <div className="button-container">
+                            <button className="recipe-edit" onClick={handleEdit}>Edit</button>
+                            <button className="recipe-delete" onClick={handleDelete}>Delete</button>
                         </div>
-                        <button className="return-home" onClick={handleHome}>Return Home</button>
                     </div>
-
-                )}
+                    <button className="return-home" onClick={handleHome}>Return Home</button>
+                </div>
+            )}
         </div>
     );
 };
 
 export default Details;
+
 
