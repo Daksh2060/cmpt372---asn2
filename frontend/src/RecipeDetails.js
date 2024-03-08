@@ -123,6 +123,7 @@ const Details = () => {
                 <div className="view-recipe-container">
                     <div className="view-recipe">
                         <h1>{recipe.name}</h1>
+                        <h3>Last Modified: {lastModified && formatDate(lastModified)}</h3>
                         <h2>Ingredients:</h2>
                         <ul>
                             {ingredients.map((ingredient, index) => (
@@ -131,7 +132,6 @@ const Details = () => {
                         </ul>
                         <h2>Steps:</h2>
                         <p>{recipe.steps}</p>
-                        <p>Last Modified: {lastModified && formatDate(lastModified)}</p>
                         <div className="button-container">
                             <button className="recipe-edit" onClick={handleEdit}>Edit</button>
                             <button className="recipe-delete" onClick={handleDelete}>Delete</button>

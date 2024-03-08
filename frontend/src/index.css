@@ -101,6 +101,15 @@
     padding-top: 20px;
 }
 
+.view-recipe h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    padding-top: 20px;
+    text-align: center; 
+}
+
 .view-recipe p {
     white-space: pre-wrap;
     margin-left: 80px;
