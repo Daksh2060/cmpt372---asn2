@@ -14,12 +14,14 @@ const Details = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [isPending, setIsPending] = useState(false);
 
+    //Used to set date from ISO to standard
     const formatDate = (isoDate) => {
 
         const date = new Date(isoDate);
         return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
     };
 
+    //Retrieve the data about the recipe based on id
     useEffect(() => {
 
         fetch(`http://localhost:8080/recipes/${id}`).then(response => {
@@ -39,16 +41,17 @@ const Details = () => {
             }).catch(error => console.error('Error fetching recipe:', error));
     }, [id]);
 
+    // Handle deleting a recipe from the details page
     const handleDelete = () => {
+
         fetch(`http://localhost:8080/recipes/${id}`, {
             method: 'DELETE'
-        })
-            .then(() => {
-                navigate('/');
-            })
-            .catch(error => console.error('Error deleting recipe:', error));
+        }).then(() => {
+            navigate('/');
+        }).catch(error => console.error('Error deleting recipe:', error));
     };
 
+    //Set the page to the editing route, to change recipe details
     const handleEdit = () => {
         setIsEditing(true);
     };
@@ -57,6 +60,7 @@ const Details = () => {
         navigate('/');
     }
 
+    //Handle submission of an updated recipe
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -84,8 +88,10 @@ const Details = () => {
             }).catch(error => console.error('Error updating recipe:', error));
     };
 
+    //Loading screen for loading recipe details
     if (!recipe) return <div>Loading...</div>;
 
+    //Updating for for the recipe
     return (
         <div className="details">
             {isEditing ? (
@@ -95,13 +101,15 @@ const Details = () => {
                         <label className="recipe-name-label">Recipe Name:</label>
                         <input className="recipe-name-input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
-                        <label className="recipe-ingredients-label">Recipe Ingredients</label>
+                        <label className="recipe-ingredients-label">Recipe Ingredients:</label>
+                        <p className="recipe-ingredients-warning">(Please enter as a comma separated list. ex: "salt, pepper, cheese, etc...")</p>
                         <textarea 
                             className="recipe-ingredients-input" 
                             value={ingredients.join(', ')} 
-                            onChange={(e) => setIngredients(e.target.value.split(', '))}/>
-
-                        <label className="recipe-steps-label">Recipe Steps</label>
+                            onChange={(e) => setIngredients(e.target.value.split(', '))}
+                        />
+                
+                        <label className="recipe-steps-label">Recipe Steps:</label>
                         <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />
 
                         {!isPending && <button>Save</button>}
@@ -111,6 +119,7 @@ const Details = () => {
 
                 </div>
             ) : (
+                //Display the recipe details
                 <div className="view-recipe-container">
                     <div className="view-recipe">
                         <h1>{recipe.name}</h1>

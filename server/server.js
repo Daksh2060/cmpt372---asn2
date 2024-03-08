@@ -16,6 +16,7 @@ const pool = new Pool({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//Initialization of both ingredient and recipe tables
 async function initializeDatabase() {
 
     try {
@@ -46,6 +47,7 @@ async function initializeDatabase() {
     }
 }
 
+//Upload a new recipe and any corresponding ingredients to respective databases
 app.post('/recipes', async (req, res) => {
 
     const { name, steps, ingredients } = req.body;
@@ -67,6 +69,7 @@ app.post('/recipes', async (req, res) => {
     }
 });
 
+//Get all recipes to display on the homepage
 app.get('/recipes', async (req, res) => {
 
     try{
@@ -88,6 +91,7 @@ app.get('/recipes', async (req, res) => {
     }
 });
 
+//Retrieve details about a specific recipe
 app.get('/recipes/:id', async (req, res) => {
 
     const { id } = req.params;
@@ -118,6 +122,7 @@ app.get('/recipes/:id', async (req, res) => {
     }
 });
 
+//Remove a recipe and any ingredients which only it used
 app.delete('/recipes/:id', async (req, res) => {
 
     const { id } = req.params;
@@ -136,6 +141,7 @@ app.delete('/recipes/:id', async (req, res) => {
     }
 });
 
+//Update a recipe and the ingredients associated with it
 app.put('/recipes/:id', async (req, res) => {
 
     const { id } = req.params;
@@ -159,6 +165,7 @@ app.put('/recipes/:id', async (req, res) => {
     }
 });
 
+//Delay the start of the server to wait for the database to start first
 waitOn({ resources: ['tcp:db:5432'] }).then(() => {
  
     initializeDatabase().then(() => {

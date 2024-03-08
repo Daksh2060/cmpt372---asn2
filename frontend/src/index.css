@@ -180,6 +180,13 @@
     display: block; 
 }
 
+.recipe-ingredients-warning{
+
+    font-weight: bold;
+    font-size: 16px;
+    display: block; 
+}
+
 .recipe-name-input{
     width: 500px;
     height: 30px;

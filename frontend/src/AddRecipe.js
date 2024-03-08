@@ -9,10 +9,12 @@ const AddRecipe = () => {
     const [isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
 
+    //Redirect to homepage
     const handleHome = () => {
         navigate('/');
     }
 
+    //Handle the submission of the form
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -20,7 +22,8 @@ const AddRecipe = () => {
     
         const ingredientsArray = ingredients.split(',').map(ingredient => ingredient.trim());
         const recipe = { name, ingredients: ingredientsArray, steps };
-    
+        
+        //Upload recipe through form submission
         try {
             const response = await fetch('http://localhost:8080/recipes', {
 
@@ -44,6 +47,7 @@ const AddRecipe = () => {
         }
     }
     
+    //Form for submitting a new recipe
     return (
         <div className="recipe-container">
             <h2>Add New Recipe</h2>
@@ -53,6 +57,7 @@ const AddRecipe = () => {
                     <input className="recipe-name-input" type="text" required value={name} onChange={(e) => setName(e.target.value)} />
 
                     <label className="recipe-ingredients-label">Recipe Ingredients:</label>
+                    <p className="recipe-ingredients-warning">(Please enter as a comma separated list. ex: "salt, pepper, cheese, etc...")</p>
                     <textarea className="recipe-ingredients-input" type="text" required value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
 
                     <label className="recipe-steps-label">Recipe Steps:</label>

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
+//Hold the list of recipes shown on the homepage
 const RecipeList = (props) => {
-
+    
     const recipes = props.recipes
-
     return (
         <div className="recipe-list">
             <h2>{props.title}</h2>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+//Used as a placeholder to redirect invalid routes
 const NotFound = () => {
     return ( 
         <div className="notfound">

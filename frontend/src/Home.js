@@ -9,6 +9,7 @@ const Home = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    //Retrieve list of recipes to be displayed on homepage
     useEffect(() => {
 
         const fetchRecipes = async () => {
@@ -32,10 +33,12 @@ const Home = () => {
         fetchRecipes();
     }, []);
 
+    //Redirect to page for adding recipes
     const handleAdd = () => {
         navigate('/add');
     }
 
+    //Load list of recipes
     return (
         <div className="home">
             <h2 className="saved-title">Saved Recipes</h2>
