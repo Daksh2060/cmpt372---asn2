@@ -118,7 +118,6 @@ app.get('/recipes/:id', async (req, res) => {
     }
 });
 
-
 app.delete('/recipes/:id', async (req, res) => {
 
     const { id } = req.params;
@@ -159,7 +158,6 @@ app.put('/recipes/:id', async (req, res) => {
         res.status(500).send('Error updating recipe');
     }
 });
-
 
 waitOn({ resources: ['tcp:db:5432'] }).then(() => {
  
