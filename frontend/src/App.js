@@ -1,4 +1,3 @@
-
 import Home from './Home.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddRecipe from './AddRecipe.js';
@@ -20,7 +19,6 @@ function App() {
         </div>
       </div>
     </Router>
-    
   );
 }
 

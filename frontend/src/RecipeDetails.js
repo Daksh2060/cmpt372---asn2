@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 
 const Details = () => {
+
     const { id } = useParams();
     const navigate = useNavigate();
     const [recipe, setRecipe] = useState(null);
@@ -14,26 +15,28 @@ const Details = () => {
     const [isPending, setIsPending] = useState(false);
 
     const formatDate = (isoDate) => {
+
         const date = new Date(isoDate);
         return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
     };
 
     useEffect(() => {
-        fetch(`http://localhost:8080/recipes/${id}`)
-            .then(response => {
+
+        fetch(`http://localhost:8080/recipes/${id}`).then(response => {
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch recipe');
                 }
                 return response.json();
-            })
-            .then(data => {
+
+            }).then(data => {
+
                 setRecipe(data);
                 setName(data.name);
                 setIngredients(data.ingredients);
                 setSteps(data.steps);
-                setLastModified(data.last_modified); // Set the last modified timestamp
-            })
-            .catch(error => console.error('Error fetching recipe:', error));
+                setLastModified(data.last_modified);
+            }).catch(error => console.error('Error fetching recipe:', error));
     }, [id]);
 
     const handleDelete = () => {
@@ -55,29 +58,30 @@ const Details = () => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
         const updatedRecipe = { name, ingredients, steps };
         setIsPending(true);
         fetch(`http://localhost:8080/recipes/${id}`, {
+
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedRecipe)
-        })
-            .then(() => {
+        }).then(() => {
+
                 console.log("Recipe updated");
                 setIsPending(false);
                 setIsEditing(false);
-                // Update the recipe state with the new values
+                
                 setRecipe(prevRecipe => ({
                     ...prevRecipe,
                     name,
                     ingredients,
                     steps
                 }));
-                // Update the last modified time
+               
                 setLastModified(new Date().toISOString());
-            })
-            .catch(error => console.error('Error updating recipe:', error));
+            }).catch(error => console.error('Error updating recipe:', error));
     };
 
     if (!recipe) return <div>Loading...</div>;
@@ -95,9 +99,7 @@ const Details = () => {
                         <textarea 
                             className="recipe-ingredients-input" 
                             value={ingredients.join(', ')} 
-                            onChange={(e) => setIngredients(e.target.value.split(', '))} 
-                        />
-
+                            onChange={(e) => setIngredients(e.target.value.split(', '))}/>
 
                         <label className="recipe-steps-label">Recipe Steps</label>
                         <textarea className="recipe-steps-input" value={steps} onChange={(e) => setSteps(e.target.value)} />
